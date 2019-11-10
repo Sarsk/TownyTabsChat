@@ -1,0 +1,11 @@
+{
+  "music.name_mentioned": {
+    "category": "music",
+    "sounds":[
+      {
+        "name": "townytabschat:music/name_mentioned",
+        "stream": true
+      }
+    ]
+  }
+}

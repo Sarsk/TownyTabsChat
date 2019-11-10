@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+[[mods]]
+modId="townytabschat"
+version="0.1"
+displayName="Towny Tabs Chat"
+logoFile="logo.png"
+credits="Everyone at the Good Night Sleep's mod, for their great source code, and my wife, for leading us on fun adventures in Minecraft!"
+authors="Sarsk"
+description='''
+Add Tabs for the various Towny chat channels.
+'''
+[[dependencies.townytabschat]] #optional
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"
+# Here's another dependency
+[[dependencies.townytabschat]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
