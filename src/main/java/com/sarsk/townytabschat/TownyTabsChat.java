@@ -1,6 +1,7 @@
 package com.sarsk.townytabschat;
 
 import com.sarsk.townytabschat.client.TownyTabsChatClient;
+import com.sarsk.townytabschat.test.ChatInjectTextCases;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -16,11 +17,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod(TownyTabsChat.MODID)
 public class TownyTabsChat
 {
-	//TODO: Thanks EMX for starter tutorial - https://emxtutorials.wordpress.com/
+	//Shout out: Thanks EMX for starter tutorial - https://emxtutorials.wordpress.com/
 	
 	public static final String NAME = "Towny Tabs Chat";
-
 	public static final String MODID = "townytabschat";
+	public static final boolean DEBUG = true;
 
 	public TownyTabsChat()
 	{
@@ -34,6 +35,9 @@ public class TownyTabsChat
 		{
 			FMLJavaModLoadingContext.get().getModEventBus().addListener(TownyTabsChatClient::initialization);
 			MinecraftForge.EVENT_BUS.register(new TownyTabsChatClient());
+			if (TownyTabsChat.DEBUG) {
+				MinecraftForge.EVENT_BUS.register(new ChatInjectTextCases());
+			}
 		});
 	}
 	

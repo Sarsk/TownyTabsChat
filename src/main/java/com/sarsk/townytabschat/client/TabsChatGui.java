@@ -3,12 +3,18 @@ package com.sarsk.townytabschat.client;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.GlStateManager;
 
+import net.minecraft.client.KeyboardListener;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.client.gui.NewChatGui;
 import net.minecraft.entity.player.ChatVisibility;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.client.event.ClientChatEvent;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import javax.annotation.Nullable;
@@ -18,6 +24,7 @@ import javax.annotation.Nullable;
  */
 public class TabsChatGui extends NewChatGui {
     Minecraft mc;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     // TODO: Multiple chat lines, stored in channels
     private final List<ChatLine> chatLines = Lists.newArrayList();
@@ -36,7 +43,7 @@ public class TabsChatGui extends NewChatGui {
                 //&&               super.getChatOpen()) {
 
             int chatHeight = getChatHeight();
-            System.out.println("Rendering TabsChatGui! Height " + chatHeight);
+            //System.out.println("Rendering TabsChatGui! Height " + chatHeight);
 /*
             double lvt_5_1_ = this.getScale();
             int lvt_7_1_ = MathHelper.ceil((double)this.getChatWidth() / lvt_5_1_);*/
@@ -52,6 +59,9 @@ public class TabsChatGui extends NewChatGui {
             double lvt_10_1_ = this.mc.gameSettings.accessibilityTextBackgroundOpacity;
             fill(2, 100, 1, 100, 13421772);
 */
+/* TODO: Tool tips!
+    ChatScreen.this.renderTooltip(TextComponentUtils.toTextComponent(lvt_10_2_).getFormattedText(), p_198500_1_, p_198500_2_);
+ */
             GlStateManager.popMatrix();
         }
     }
@@ -75,6 +85,7 @@ public class TabsChatGui extends NewChatGui {
 
     @Override
     public void printChatMessage(ITextComponent chatComponent) {
+        LOGGER.info("[TC] {}", "This is a test!");
         super.printChatMessageWithOptionalDeletion(chatComponent, 0);
     }
 

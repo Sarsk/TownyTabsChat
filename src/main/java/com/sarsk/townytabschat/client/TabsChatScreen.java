@@ -23,6 +23,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 /*
  * Tabbed Chat Screen, based off Minecraft ChatScreen
+ *   TabsChatScreen - Chat Screen extension
+ *     The Minecraft ChatScreen is the text box that accepts user input to send a chat msg
+ *     Extend the Screen to intercept the user text, and add chat channel prefix'
  */
 @OnlyIn(Dist.CLIENT)
 public class TabsChatScreen extends ChatScreen {

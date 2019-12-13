@@ -2,13 +2,16 @@ package com.sarsk.townytabschat.client;
 
 import com.sarsk.townytabschat.client.render.DVEntityRendering;
 import com.sarsk.townytabschat.client.render.DVTileEntityRendering;
+import com.sarsk.townytabschat.test.ChatInjectTextCases;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IngameGui;
+import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-
+import net.minecraft.util.text.StringTextComponent;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -33,12 +36,36 @@ public class TownyTabsChatClient
 		DVTileEntityRendering.initialization();
 		DVEntityRendering.initialization();
 		//MinecraftForge.EVENT_BUS.register(new TabsChatScreen("Test"));
-
+		//MinecraftForge.EVENT_BUS.register();
 		// Replace the Minecraft Chat GUI
 		tabsChatGui = new TabsChatGui(Minecraft.getInstance());
 		hookIntoChat(Minecraft.getInstance().ingameGUI, tabsChatGui);
+
+		//net.minecraftforge.event.
 	}
 
+	@SubscribeEvent
+	public void onPlayerAttemptChat(ClientChatEvent event) {
+		System.out.println("Chat message? : " + event.getMessage());
+
+		// We got this! Cancel the chat msg
+		/*
+		if(event.getMessage().equals("/Test")) {
+			event.setCanceled(true);
+			ChatInjectTextCases.sendMessageSet();
+			Minecraft.getInstance().ingameGUI.getChatGUI().addToSentMessages(event.getMessage());
+			// TODO: Inject msg into msg history?
+		}*/
+
+		/* Thank you Forge The-Fireplace for the Test Cases!
+		 * src/test/java/net/minecraftforge/test/ClientChatEventTest.java
+        if(event.getMessage().equals("Cancel"))
+            event.setCanceled(true);
+        else if(event.getMessage().equals("Replace this text"))
+            event.setMessage("Text replaced.");
+          */
+
+	}
 	@SubscribeEvent
 	public void onRenderGui(RenderGameOverlayEvent.Post event)
 	{
